@@ -36,6 +36,7 @@ namespace FirstApp
                 {
                     Console.WriteLine("Please, Enter your Date of your Birth(YYYY): ");
                     person.dateOfBirth = Console.ReadLine().Trim();
+                    person.mustGoToMiliteryService = person.MilitiryService(person.BirthCalculator(person.dateOfBirth).ToString());
                 } while (person.CheckDigit(person.dateOfBirth) != true || person.dateOfBirth.Length != 4);
 
                 do
@@ -51,9 +52,9 @@ namespace FirstApp
                 do
                 {
 
-                Console.WriteLine("Please Choose your gender from one of the following number: ");
-                Console.WriteLine("\t1. MALE\n\t2. FEMALE\n\t3. Non-Binary\n");
-                person.gender = person.CheckGender((Console.ReadLine().Trim().ToLower()).ToCharArray()[0]);
+                    Console.WriteLine("Please Choose your gender from one of the following number: ");
+                    Console.WriteLine("\t1. MALE\n\t2. FEMALE\n\t3. Non-Binary\n");
+                    person.gender = person.CheckGender((Console.ReadLine().Trim().ToLower()).ToCharArray()[0]);
                 } while (person.gender.Length != 1 || int.Parse(person.gender) > 3);
 
                 do
@@ -74,7 +75,7 @@ namespace FirstApp
                 }
                 else if (input == 2)
                 {
-                    Console.WriteLine("Name: {0}\nLast Name: {1}\nDate of Birth: {2}\nAge: {3}\nGender: {4}\nPhone Number: {5}", person.name.ToUpper(), person.familyName.ToUpper(), person.dateOfBirth, person.BirthCalculator(person.dateOfBirth), person.gender, person.cellPhone);
+                    Console.WriteLine("Name: {0}\nLast Name: {1}\nDate of Birth: {2}\nAge: {3}\nGender: {4}\nPhone Number: {5}\nMilitery Service: {6}", person.name.ToUpper(), person.familyName.ToUpper(), person.dateOfBirth, person.BirthCalculator(person.dateOfBirth), person.gender, person.cellPhone, person.mustGoToMiliteryService);
                 }
 
                 condition = false;
@@ -144,7 +145,7 @@ namespace FirstApp
                 {
                     return "F";
                 }
-                else if(gender.Equals("3") || gender.Equals("non-binary"))
+                else if (gender.Equals("3") || gender.Equals("non-binary"))
                 {
                     return "Non-Binary";
                 }
@@ -152,6 +153,15 @@ namespace FirstApp
                 {
                     return "e";
                 }
+            }
+
+            public bool MilitiryService(string year)
+            {
+                if (BirthCalculator(year) >= 18 && BirthCalculator(year) <= 50)
+                {
+                    return true;
+                }
+                return false;
             }
 
         }
