@@ -50,18 +50,10 @@ namespace FirstApp
 
                 do
                 {
-                    try
-                    {
-                    Console.WriteLine("Please Choose your gender from one of the following number: ");
-                    Console.WriteLine("\t1. MALE\n\t2. FEMALE\n\t3. Non-Binary\n");
-                    person.gender = person.CheckGender((Console.ReadLine().Trim().ToLower()).ToCharArray()[0]);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Wrong input!");
-                        break;
-                    }
 
+                Console.WriteLine("Please Choose your gender from one of the following number: ");
+                Console.WriteLine("\t1. MALE\n\t2. FEMALE\n\t3. Non-Binary\n");
+                person.gender = person.CheckGender((Console.ReadLine().Trim().ToLower()).ToCharArray()[0]);
                 } while (person.gender.Length != 1 || int.Parse(person.gender) > 3);
 
                 do
