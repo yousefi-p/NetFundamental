@@ -11,7 +11,7 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            string name, familyName, dateOfBirth;
+            string name, familyName, dateOfBirth, cellPhone;
             int input;
             Console.BackgroundColor = ConsoleColor.Cyan;
             Console.ForegroundColor = ConsoleColor.White;
@@ -45,6 +45,12 @@ namespace FirstApp
 
                 do
                 {
+                    Console.WriteLine("Please, Enter your Cell phone number: ");
+                    cellPhone = CheckCellPhone(Console.ReadLine().Trim());
+                } while (CheckDigit(cellPhone) != true && cellPhone.Length != 11);
+
+                do
+                {
                     Console.Clear();
                     Console.WriteLine("For Summery Enter 1 and for Details Enter 2 :");
                     try
@@ -61,7 +67,7 @@ namespace FirstApp
                 }
                 else if (input == 2)
                 {
-                    Console.WriteLine("Name: {0}\nLast Name: {1}\nDate of Birth: {2}\nAge: {3}", name.ToUpper(), familyName.ToUpper(), dateOfBirth, BirthCalculator(dateOfBirth));
+                    Console.WriteLine("Name: {0}\nLast Name: {1}\nDate of Birth: {2}\nAge: {3}\nPhone Number: {4}", name.ToUpper(), familyName.ToUpper(), dateOfBirth, BirthCalculator(dateOfBirth), cellPhone);
                 }
 
                 condition = false;
@@ -100,5 +106,20 @@ namespace FirstApp
         {
             return DateTime.Today.Year - int.Parse(str);
         }
+
+        static string CheckCellPhone(string phone)
+        {
+            if (phone.StartsWith("+98"))
+            {
+                phone = "0"+phone.Substring(3);
+            }
+            if (phone.StartsWith("09") || phone.Length == 11)
+            {
+                return phone;
+            }
+            return "0";
+            
+        }
+
     }
 }
